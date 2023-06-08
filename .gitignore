@@ -40,3 +40,8 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# yarn
+.yarn
+yarn.lock
+
