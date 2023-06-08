@@ -26,22 +26,22 @@ const items: MenuProps["items"] = [
 		label: "Trang",
 	},
 	{
-		key: `menu/admin/pages`,
+		key: `menu/admin/zones`,
 		icon: <EnvironmentOutlined />,
 		label: "Zone",
 	},
 	{
-		key: `menu/admin/pages`,
+		key: `menu/admin/subscribers`,
 		icon: <UserAddOutlined />,
 		label: "Người đăng kí",
 	},
 	{
-		key: `menu/admin/pages`,
+		key: `menu/admin/setting`,
 		icon: <SettingOutlined />,
 		label: "Quản trị",
 	},
 	{
-		key: `menu/admin/pages`,
+		key: `menu/admin/activities`,
 		icon: <DashboardOutlined />,
 		label: "Hoạt động",
 	},
