@@ -1,4 +1,4 @@
-import { BookOutlined, DashboardOutlined, EnvironmentOutlined, SettingOutlined, UserAddOutlined, UserDeleteOutlined } from "@ant-design/icons";
+import { BookOutlined, CheckOutlined, DashboardOutlined, EnvironmentOutlined, SettingOutlined, UserAddOutlined, UserDeleteOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Menu } from "antd";
 import Sider from "antd/lib/layout/Sider";
@@ -26,23 +26,23 @@ const items: MenuProps["items"] = [
 		label: "Trang",
 	},
 	{
-		key: `menu/admin/pages`,
+		key: `menu/admin/zone`,
 		icon: <EnvironmentOutlined />,
 		label: "Zone",
 	},
 	{
-		key: `menu/admin/pages`,
+		key: `menu/admin/subscription`,
 		icon: <UserAddOutlined />,
 		label: "Người đăng kí",
 	},
 	{
-		key: `menu/admin/pages`,
+		key: `menu/admin/setting`,
 		icon: <SettingOutlined />,
 		label: "Quản trị",
 	},
 	{
-		key: `menu/admin/pages`,
-		icon: <DashboardOutlined />,
+		key: `menu/admin/activities`,
+		icon: <CheckOutlined />,
 		label: "Hoạt động",
 	},
 	// {

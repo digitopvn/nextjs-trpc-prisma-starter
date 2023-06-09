@@ -29,10 +29,10 @@ const Login = (props: any): JSX.Element => {
 		});
 		if (!res?.error) {
 			notification.success({
-				message: "Thành công rồi mừng quá",
+				message: "Đăng nhập thành công!",
 				duration: 3,
 			});
-			router.push("/admin/customers");
+			router.push("/admin/dashboard");
 		} else
 			notification.error({
 				message: res?.error,

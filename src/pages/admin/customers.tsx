@@ -55,7 +55,6 @@ const Customers = (props: any): JSX.Element => {
     };
 
     const handleSubmit = async (data: any) => {
-        console.log(`123:`, data);
         onClose();
     };
 
