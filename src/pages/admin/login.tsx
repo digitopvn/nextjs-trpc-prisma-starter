@@ -1,43 +1,22 @@
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { Form, Input, Checkbox, Button, notification } from "antd";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { Button, Form, Input, notification } from "antd";
+import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { getServerSession } from "next-auth/next";
+import { getProviders, signIn } from "next-auth/react";
 import { useState } from "react";
-import { api } from "~/utils/api";
+import { authOptions } from "~/server/auth";
+import { useRouter } from "next/router";
 
-const Login = (props: any): JSX.Element => {
+export default function SignIn({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 	const [userInfo, setUserInfo] = useState({ email: "", password: "" });
 	const router = useRouter();
-	// const { mutate, isLoading: isPosting } = api.user.create.useMutation({
-	// 	onSuccess: () => {
-	// 		notification.success({ message: "Gửi thông tin thành công!" });
-	// 	},
-	// 	onError: (e: any) => {
-	// 		notification.error({ message: `Gửi thông tin thất bại!` });
-	// 	},
-	// });
 
 	const onSubmit = async (e: any) => {
-		// mutate({
-		// 	name: "Thịnh Nguyễn",
-		// 	email: "thinhdev@gmail.com",
-		// 	password: "Top@123#"
-		// });
-		let res = await signIn("credentials", {
-			...userInfo,
-			redirect: false,
-		});
+		let res = await signIn("credentials", { ...userInfo, redirect: false, screen: 'admin' });
 		if (!res?.error) {
-			notification.success({
-				message: "Thành công rồi mừng quá",
-				duration: 3,
-			});
-			router.push("/admin/customers");
-		} else
-			notification.error({
-				message: res?.error,
-				duration: 3,
-			});
+			notification.success({ message: "Đăng nhập thành công", duration: 2 });
+			router.push("/admin/dashboard");
+		} else notification.error({ message: "Đăng nhập không thành công", duration: 2 });
 	};
 
 	return (
@@ -78,12 +57,21 @@ const Login = (props: any): JSX.Element => {
 						Log in
 					</Button>
 				</Form.Item>
-				<a className="login-form-forgot" href="#">
-					Forgot password
-				</a>
 			</Form>
 		</div>
 	);
-};
+}
 
-export default Login;
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+	const session = await getServerSession(context.req, context.res, authOptions);
+
+	if (session) {
+		return { redirect: { destination: "/admin/dashboard" } };
+	}
+
+	const providers = await getProviders();
+
+	return {
+		props: { providers: providers ?? [] },
+	};
+}
