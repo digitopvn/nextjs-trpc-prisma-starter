@@ -49,7 +49,7 @@ model User {
     password      String?
     emailVerified DateTime?
     image         String?
-    screen        String? @default("customer")
+    screen        String?      @default("customer")
     accounts      Account[]
     sessions      Session[]
     Activities    Activities[]

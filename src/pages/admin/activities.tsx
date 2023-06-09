@@ -2,7 +2,6 @@ import { PlusOutlined, SearchOutlined } from "@ant-design/icons";
 import { Button, Col, Collapse, DatePicker, Drawer, Form, Input, Row, Select, Space, Table } from 'antd';
 const { Option } = Select;
 
-import { Admin } from "~/templates/Admin";
 import { useEffect, useState } from "react";
 import { api } from "~/utils/api";
 import { TableParams } from "~/model/table.model";
@@ -105,81 +104,75 @@ const Activities = (props: any): JSX.Element => {
     const onClose = () => {
         setOpen(false);
     };
-    const handleSearch = (data: any) => {
-        console.log('data---->', data);
-    }
-    return (
-        <Admin>
-            <div className="pt-6">
-                <Collapse className="mb-3">
-                    <Panel header="Bộ lọc tìm kiếm" key="1">
-                        <Form
-                            layout="vertical"
-                            form={form}
-                            id="search-form"
-                            onFinish={handleSearch}
-                        >
-                            <Row gutter={16}>
-                                <Col span={8}>
-                                    <Form.Item
-                                        name="user"
-                                        label="Tên người dùng"
-                                    >
-                                        <Input placeholder="Vui lòng nhập tên người dùng"
-                                            onChange={(e: any) => {
-                                                setSearchFormInput({
-                                                    ...searchFormInput,
-                                                    user: e.target.value,
-                                                })
-                                            }}
-                                        />
-                                    </Form.Item>
-                                </Col>
-                                <Col span={16}>
-                                    <Form.Item
-                                        name="createAt"
-                                        label="Ngày tạo"
-                                    >
-                                        <RangePicker showTime className="w-full"
-                                            onChange={(e: any) => {
-                                                setSearchFormInput({
-                                                    ...searchFormInput,
-                                                    createdFrom: moment(e[0].$d).format('YYYY-MM-DD HH:mm:ss'),
-                                                    createdTo: moment(e[1].$d).format('YYYY-MM-DD HH:mm:ss'),
-                                                })
-                                            }}
-                                        />
-                                    </Form.Item>
-                                </Col>
-                            </Row>
-                            <Space>
-                                <Button htmlType="button" type="default"
-                                    onClick={() => {
-                                        setSearchFormInput({
-                                            user: '',
-                                            createdFrom: '',
-                                            createdTo: '',
-                                        });
-                                        form.resetFields()
-                                    }}
-                                >
-                                    Làm mới
-                                </Button>
-                            </Space>
-                        </Form>
-                    </Panel>
-                </Collapse>
-                <Table columns={columns} dataSource={dataSource} bordered
-                    onChange={handleTableChange}
-                    pagination={{
-                        ...tableParams.pagination,
-                        total: data?.total || 0
-                    }}
-                    loading={isLoading}
-                />
-            </div>
 
-        </Admin>
+    return (
+        <div className="pt-6">
+            <Collapse className="mb-3">
+                <Panel header="Bộ lọc tìm kiếm" key="1">
+                    <Form
+                        layout="vertical"
+                        form={form}
+                        id="search-form"
+                    >
+                        <Row gutter={16}>
+                            <Col span={8}>
+                                <Form.Item
+                                    name="user"
+                                    label="Tên người dùng"
+                                >
+                                    <Input placeholder="Vui lòng nhập tên người dùng"
+                                        onChange={(e: any) => {
+                                            setSearchFormInput({
+                                                ...searchFormInput,
+                                                user: e.target.value,
+                                            })
+                                        }}
+                                    />
+                                </Form.Item>
+                            </Col>
+                            <Col span={16}>
+                                <Form.Item
+                                    name="createAt"
+                                    label="Ngày tạo"
+                                >
+                                    <RangePicker showTime className="w-full"
+                                        onChange={(e: any) => {
+                                            setSearchFormInput({
+                                                ...searchFormInput,
+                                                createdFrom: moment(e[0].$d).format('YYYY-MM-DD HH:mm:ss'),
+                                                createdTo: moment(e[1].$d).format('YYYY-MM-DD HH:mm:ss'),
+                                            })
+                                        }}
+                                    />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                        <Space>
+                            <Button htmlType="button" type="default"
+                                onClick={() => {
+                                    setSearchFormInput({
+                                        user: '',
+                                        createdFrom: '',
+                                        createdTo: '',
+                                    });
+                                    form.resetFields()
+                                }}
+                            >
+                                Làm mới
+                            </Button>
+                        </Space>
+                    </Form>
+                </Panel>
+            </Collapse>
+            <Table columns={columns} dataSource={dataSource} bordered
+                onChange={handleTableChange}
+                pagination={{
+                    ...tableParams.pagination,
+                    total: data?.total || 0
+                }}
+                loading={isLoading}
+            />
+        </div>
     );
 };
 
