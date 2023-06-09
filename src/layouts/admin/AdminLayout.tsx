@@ -1,19 +1,24 @@
 import { Layout } from "antd";
+import { useState } from "react";
 import AdminHeader from "./AdminHeader";
 import AdminSider from "./AdminSider";
-const { Header, Sider, Content } = Layout;
+import { SessionProvider } from "next-auth/react";
+import { api } from "~/utils/api";
+const { Content } = Layout;
+
 const AdminLayout = (props: any): JSX.Element => {
+	const [collapsed, setCollapsed] = useState(false);	
 	return (
-		<>
+		<SessionProvider>
 			<Layout>
-				<AdminSider></AdminSider>
+				<AdminSider collapsed={collapsed}></AdminSider>
 				<Layout>
-					<AdminHeader></AdminHeader>
-					<Content style={{ margin: "24px 16px", padding: 24, background: "#fff", height: "88vh" }}>Content</Content>
+					<AdminHeader collapsed={collapsed} setCollapsed={setCollapsed}></AdminHeader>
+					<Content style={{ margin: "24px 16px", padding: 24, background: "#fff", height: "87.7vh" }}>{props.children}</Content>
 				</Layout>
 			</Layout>
-		</>
+		</SessionProvider>
 	);
 };
 
-export default AdminLayout;
+export default api.withTRPC(AdminLayout) as any;
