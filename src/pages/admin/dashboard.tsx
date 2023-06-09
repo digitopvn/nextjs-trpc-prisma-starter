@@ -1,11 +1,11 @@
-import { Admin } from "~/templates/Admin";
-
+import { Layout } from "antd";
+import AdminLayout from "~/layouts/admin/AdminLayout";
+const { Header, Sider, Content } = Layout;
 const Dashboard = (props: any): JSX.Element => {
-	// const data = api.pages.getAll.useQuery();
 	return (
-		<Admin>
-			<h1> Hello Dashboard</h1>
-		</Admin>
+		<AdminLayout>
+			
+		</AdminLayout>
 	);
 };
 
