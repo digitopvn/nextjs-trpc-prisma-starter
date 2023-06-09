@@ -1,4 +1,4 @@
-import { BookOutlined, DashboardOutlined, EnvironmentOutlined, SettingOutlined, UserAddOutlined, UserDeleteOutlined } from "@ant-design/icons";
+import { BookOutlined, CheckOutlined, DashboardOutlined, EnvironmentOutlined, SettingOutlined, UserAddOutlined, UserDeleteOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Menu } from "antd";
 import Sider from "antd/lib/layout/Sider";
@@ -42,7 +42,7 @@ const items: MenuProps["items"] = [
 	},
 	{
 		key: `menu/admin/activities`,
-		icon: <DashboardOutlined />,
+		icon: <CheckOutlined />,
 		label: "Hoạt động",
 	},
 	// {
