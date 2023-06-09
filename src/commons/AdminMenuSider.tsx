@@ -26,12 +26,12 @@ const items: MenuProps["items"] = [
 		label: "Trang",
 	},
 	{
-		key: `menu/admin/zone`,
+		key: `menu/admin/zones`,
 		icon: <EnvironmentOutlined />,
 		label: "Zone",
 	},
 	{
-		key: `menu/admin/subscription`,
+		key: `menu/admin/subscribers`,
 		icon: <UserAddOutlined />,
 		label: "Người đăng kí",
 	},
