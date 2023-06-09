@@ -1,5 +1,5 @@
 generator client {
-    provider = "prisma-client-js"
+    provider        = "prisma-client-js"
     previewFeatures = ["jsonProtocol"]
 }
 
@@ -58,3 +58,16 @@ model VerificationToken {
     @@unique([identifier, token])
 }
 
+model Customer {
+    id            String   @id @default(cuid())
+    name          String
+    email         String
+    phone         String
+    uploadLink    String
+    category      String
+    message       String
+    statusProcess Int
+    deletedAt     DateTime @default(now())
+    createdAt     DateTime @default(now())
+    updatedAt     DateTime @updatedAt
+}
